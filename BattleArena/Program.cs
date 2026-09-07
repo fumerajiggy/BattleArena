@@ -11,24 +11,25 @@ namespace BattleArena
     {
         static void Main(string[] args)
         {
-            Warrior Jiggy = new Warrior("Jiggy", 300, 50);
-            Warrior Orbeast = new Warrior("Orbeast", 10, 1);
-            Warrior Dedong = new Warrior("Dedong", 100, 20);
+            int round = 1;
+            Warrior Jiggy = new Warrior("Jiggy", 300, 15, "Dinilaan");
+            Warrior Orbading = new Warrior("Orbading", 150, 32, "Sinubo");
+            Warrior Dedong = new Warrior("Dedong", 200, 20, "Pinwetan");
 
-            Console.WriteLine($"{Jiggy.Name} has " +
-                $"{Jiggy.Health} health and {Jiggy.AttackPower} attack power.");
-            Console.WriteLine("----------------------------------------------");
+            Jiggy.DisplayStatus();
+            Orbading.DisplayStatus();
+            Dedong.DisplayStatus();
 
-            Console.WriteLine($"{Orbeast.Name} has " +
-                $"{Orbeast.Health} health and {Orbeast.AttackPower} attack power.");
-            Console.WriteLine("----------------------------------------------");
+            while (Jiggy.IsAlive && Orbading.IsAlive)
+            {
+                Console.WriteLine($"---------------- Round {round}  ----------------");
+                Orbading.Attack(Jiggy);
+                Jiggy.Attack(Orbading);
+                Console.WriteLine("------------------------------------------");
+                round++;
+            }
 
-            Console.WriteLine($"{Dedong.Name} has " +
-                $"{Dedong.Health} health and {Dedong.AttackPower} attack power.");
-            Console.WriteLine("----------------------------------------------");
-
-            Console.ReadLine();
+            Console.ReadKey();
         }
-
     }
 }
